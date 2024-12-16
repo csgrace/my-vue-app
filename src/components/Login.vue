@@ -20,36 +20,36 @@
     <div v-else class="welcome-container">
       <h2>Welcome, {{ username }}</h2>
       <div v-if="username === 'postgres' && password === 'huarui66'">
-        <button @click="toggleService('ArticleService')">ArticleService</button>
+        <button @click="services.ArticleService = !services.ArticleService">ArticleService</button>
         <div v-if="services.ArticleService">
           <p>geArticletArticleCitationsByYear</p>
           <p>addArticleAndUpdateIF</p>
         </div>
-        <button @click="toggleService('AuthorService')">AuthorService</button>
+        <button @click="services.AuthorService = !services.AuthorService">AuthorService</button>
         <div v-if="services.AuthorService">
           <p>getArticlesByAuthorSortedByCitations</p>
           <p>getJournalWithMostArticlesByAuthor</p>
           <p>getMinArticlesToLinkAuthors</p>
         </div>
-        <button @click="toggleService('DatabaseService')">DatabaseService</button>
+        <button @click="services.DatabaseService = !services.DatabaseService">DatabaseService</button>
         <div v-if="services.DatabaseService">
           <p>getGroupMembers</p>
           <p>importData</p>
           <p>truncate</p>
           <p>sum</p>
         </div>
-        <button @click="toggleService('GrantService')">GrantService</button>
+        <button @click="services.GrantService = !services.GrantService">GrantService</button>
         <div v-if="services.GrantService">
           <p>getCountryFundPapers</p>
         </div>
-        <button @click="toggleService('JournalService')">JournalService</button>
+        <button @click="services.JournalService = !services.JournalService">JournalService</button>
         <div v-if="services.JournalService">
           <p>getImpactFactor</p>
           <p>updateJournalName</p>
         </div>
-        <button @click="toggleService('KeywordService')">KeywordService</button>
+        <button @click="services.KeywordService = !services.KeywordService">KeywordService</button>
         <div v-if="services.KeywordService">
-          <p class="small-text">getArticleCountByKeywordInPastYears</p>
+          <p>getArticleCountByKeywordInPastYears</p>
         </div>
       </div>
       <button @click="logout" class="logout-button">Log out</button>
@@ -67,7 +67,7 @@ export default {
       isLoggedIn: false, // 登录状态
       services: {
         ArticleService: false,
-        AuthorService: false,
+        AuthorService:  false,
         DatabaseService: false,
         GrantService: false,
         JournalService: false,
