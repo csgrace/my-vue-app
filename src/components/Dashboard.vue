@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Dashboard</h1>
+    <h1>Dashboard</h1> <!-- 仪表盘标题 -->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Dashboard'
+  name: 'Dashboard' // 组件名称
 };
 </script>
 

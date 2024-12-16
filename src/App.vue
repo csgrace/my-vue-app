@@ -1,13 +1,15 @@
 <template>
-  <router-view />
+  <div id="app">
+    <Login /> <!-- 引入登录组件 -->
+  </div>
 </template>
 
 <script>
+import Login from './components/Login.vue'; // 引入登录组件
+
 export default {
-  name: 'App'
+  components: {
+    Login,
+  },
 };
 </script>
-
-<style>
-/* 你可以在这里添加全局样式 */
-</style>

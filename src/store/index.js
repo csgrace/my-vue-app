@@ -1,17 +1,12 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
 
 export default createStore({
   state: {
-    token: null,
     user: null,
     userRole: null
   },
   mutations: {
-    setToken(state, token) {
-      state.token = token;
-    },
     setUser(state, user) {
       state.user = user;
     },
@@ -19,26 +14,30 @@ export default createStore({
       state.userRole = role;
     },
     logout(state) {
-      state.token = null;
       state.user = null;
       state.userRole = null;
     }
   },
   actions: {
     async loginUser({ commit }, credentials) {
-      const response = await axios.post('/api/login', credentials);
-      const token = response.data.token;
-      commit('setToken', token);
-      const user = jwtDecode(token);
-      commit('setUser', user);
-      commit('setUserRole', user.role);
+      try {
+        console.log('Login credentials:', credentials); // 添加调试信息
+        const response = await axios.post('/api/login', credentials);
+        console.log('API response:', response); // 添加调试信息
+        const user = response.data.user;
+        commit('setUser', user);
+        commit('setUserRole', user.role);
+      } catch (error) {
+        console.error('API error:', error); // 添加调试信息
+        throw new Error('Invalid username or password');
+      }
     },
     logout({ commit }) {
       commit('logout');
     }
   },
   getters: {
-    isAuthenticated: state => !!state.token,
+    isAuthenticated: state => !!state.user,
     user: state => state.user,
     userRole: state => state.userRole
   }
